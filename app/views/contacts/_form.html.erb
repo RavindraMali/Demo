@@ -1,0 +1,53 @@
+<%= form_with model: contact do |form| %>
+    <table>
+        <tr>
+            <th><%= form.label :contact_person %></th>
+            <td><%= form.text_field :contact_person %></td>
+            <td>
+                <ul>
+                <% contact.errors.full_messages_for(:contact_person).each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th><%= form.label :contact_address %></th>
+            <td><%= form.text_area :contact_address %></td>
+            <td>
+                <ul>
+                <% contact.errors.full_messages_for(:contact_address).each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><%= form.label :contact_number %><br></td>
+            <td><%= form.text_area :contact_number %></td>
+            <td>
+                <ul>
+                <% contact.errors.full_messages_for(:contact_number).each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+        <td><%= form.label :contact_email %><br></td>
+        <td><%= form.text_area :contact_email %></td>
+        <td>
+                <ul>
+                <% contact.errors.full_messages_for(:contact_email).each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><%= form.submit %></td>
+            <td></td>
+        </tr>
+    </table>
+  <% end %>
