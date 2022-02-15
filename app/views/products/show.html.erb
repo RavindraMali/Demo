@@ -1,0 +1,46 @@
+<center>
+<h3>Product Detail </h3>
+<table class="table table-striped">
+
+<thead>
+  </thead>
+  <tbody>
+    <tr>
+            <th scope="col">Name</th>
+            <td><%= @product.name %></td>
+
+            <th scope="col">Title</th>
+            <td><%= @product.title %></td>
+    </tr>
+    <tr>
+        <th scope="col">Description</th>
+        <td colspan="3"><%= @product.description.to_s.html_safe %></td>
+    </tr>
+    <tr>
+        <th>Code</th>
+        <td><%= @product.code %></td>
+        
+        <th>Manufactured By</th>
+        <td><%= @product.manufacture_by %></td>
+    </tr>
+    <tr>
+        <th>Quentity</th>
+        <td><%= @product.quantity %></td>
+
+        <th scope="col">Price(Rate)</th>      
+        <td><%= @product.price %></td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td><%= @product.status %></td>
+        
+        <th>Created At</th>
+        <td><%= @product.created_at %></td>
+    </tr>
+    <tr>
+    <th>Image</th>
+    <td><%= image_tag  @product.image_url , class: "img-responsive"%></td>
+    </tr>
+  </tbody>
+</table>
+</center>

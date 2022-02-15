@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/contactus', to: "contacts#index" 
   get '/aboutus', to: "abouts#index"
   resources:products
+
   
 end

@@ -22,12 +22,23 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-
+    # addition gem used in project
 # Use ActiveAdmin gem to use administration feature
 gem 'activeadmin'
 
 # Use Devise gem to authenticate user 
 gem 'devise'
+
+# CK editor 
+gem 'ckeditor'
+
+
+gem 'carrierwave', '~> 2.0'
+
+
+# gem 'carrierwave'
+# gem 'mini_magick'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
