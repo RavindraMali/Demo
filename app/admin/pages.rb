@@ -14,5 +14,25 @@ ActiveAdmin.register Page do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    id_column
+    column :title
+    column :slug
+    column :content do |page|
+        page.content.to_s.html_safe
+    end
+    actions
+  end
   
+  form do |f|
+    text_node javascript_include_tag Ckeditor.cdn_url
+    f.inputs do 
+      f.input :title
+      f.input :slug
+      f.input :content, :as => :ckeditor, input_html: { ckeditor: { height: 200 }, style: "margin-left: 20%" }
+    end
+    f.actions
+  end
+
 end

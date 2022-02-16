@@ -16,7 +16,27 @@ ActiveAdmin.register Product do
   #   permitted
   # end
 
-
+  index do  
+      id_column
+      column :name
+      column :title
+      column :description do |product|
+        product.description.to_s.html_safe
+      end
+      column :code
+      column :manufacture_by
+      column :status
+      column :price
+      column :quantity
+      column :image do |product|
+        if product.image_url
+        image_tag product.image_url(:thumb)
+        else
+          "Not uploaded"
+        end
+      end
+      actions
+  end
 
   form do |f|
     text_node javascript_include_tag Ckeditor.cdn_url
@@ -34,4 +54,26 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
+
+  show do
+    attributes_table do
+      row :name
+      row :title
+      row :description do |product|
+        product.description.to_s.html_safe
+      end
+      row :code
+      row :manufacture_by
+      row :status
+      row :price
+      row :quantity
+      row :image do |ad|
+        image_tag ad.image.url
+      end
+    end
+    active_admin_comments
+  end
+
+
+
 end

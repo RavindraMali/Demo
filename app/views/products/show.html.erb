@@ -39,7 +39,12 @@
     </tr>
     <tr>
     <th>Image</th>
-    <td><%= image_tag  @product.image_url , class: "img-responsive"%></td>
+    <td>
+      <% if @product.image_url %>
+    <%= image_tag  @product.image_url , class: "img-responsive"%>
+      <% end %>
+    </td>
+
     </tr>
   </tbody>
 </table>

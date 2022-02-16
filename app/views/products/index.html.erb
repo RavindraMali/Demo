@@ -26,7 +26,11 @@
       <td><%= product.status %></td>
       <td><%= product.price %></td>
       <td><%= product.quantity %></td>
-      <td><%= image_tag product.image_url(:thumb) , class: "img-responsive"%></td>
+      <td>
+          <% if product.image_url %>
+          <%= image_tag product.image_url(:thumb) , class: "img-responsive"%>
+          <% end %> 
+      </td>
       <td><%= link_to "View", product, :class => "btn btn-primary text-black" %></td>
     </tr>
     <% end %>
