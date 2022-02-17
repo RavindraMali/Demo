@@ -11,6 +11,9 @@
 
             <th scope="col">Title</th>
             <td><%= @product.title %></td>
+
+            <th>Category</th>
+            <td><%= @product.category&.name %></td>
     </tr>
     <tr>
         <th scope="col">Description</th>
@@ -35,7 +38,7 @@
         <td><%= @product.status %></td>
         
         <th>Created At</th>
-        <td><%= @product.created_at %></td>
+        <td><%= @product.created_at.to_date %></td>
     </tr>
     <tr>
     <th>Image</th>

@@ -1,11 +1,11 @@
 ActiveAdmin.register Product do
-
+  
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :title, :description, :code, :manufacture_by, :status, :price, :quantity, :image
+  permit_params :name, :title, :description, :code, :manufacture_by, :status, :price, :quantity, :image, :category_id
   # text_node javascript_include_tag Ckeditor.cdn_url
   #
   # or
@@ -35,6 +35,11 @@ ActiveAdmin.register Product do
           "Not uploaded"
         end
       end
+      column :category_id do |product|
+        if product.category_id.present?
+          product.category_id
+        end
+      end
       actions
   end
 
@@ -51,6 +56,7 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :quantity
       f.input :image
+      f.input :category  # don't use category_id 
     end
     f.actions
   end
@@ -67,8 +73,15 @@ ActiveAdmin.register Product do
       row :status
       row :price
       row :quantity
-      row :image do |ad|
-        image_tag ad.image.url
+      row :image do |product|
+        if product.image.present?
+        image_tag product.image.url
+        end
+      end
+      row :category_id do |product|
+        if product.category_id.present?
+          product.category_id
+        end
       end
     end
     active_admin_comments

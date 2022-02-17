@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # get '/aboutus', to: "abouts#index"
   resources:products
   
+  resources:addresses
+  
   get '/page/:slug', to: 'pages#page'
   
 end

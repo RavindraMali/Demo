@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  address: one
+  order_date: 2022-02-17 13:04:09
+
+two:
+  user: two
+  address: two
+  order_date: 2022-02-17 13:04:09

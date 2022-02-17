@@ -1,0 +1,28 @@
+<div class="text-right">
+<%= link_to 'Back', addresses_path, class: "btn btn-dark m-2" %>
+</div>
+<table class="table table-striped">
+<tbody>
+    <tr>
+        <th scope="col">Line 1</th>
+        <td><%= @address.street1 %></td>
+        
+        <th scope="col">Line 2</th>
+        <td><%= @address.street2 %></td>
+    </tr>
+    <tr>
+        <th scope="col">city</th>
+        <td><%= @address.city %></td>
+      
+        <th scope="col">State</th>
+        <td><%= @address.state %></td>
+    </tr> 
+    <tr>
+        <th>country</th>
+        <td><%= @address.country %></td>
+        
+        <th>Pincode</th>
+        <td><%= @address.pincode %></td>      
+    </tr>
+  </tbody>
+</table>

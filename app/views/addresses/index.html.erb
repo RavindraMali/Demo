@@ -1,0 +1,36 @@
+<div class="text-right">
+    <%= link_to "Add New", new_address_path, class: "btn btn-dark m-2" %>
+</div>
+<table class="table table-striped">
+<thead>
+    <tr>
+      <th scope="col">sr.No<% srno = 1 %></th>
+      <th scope="col">Line 1</th>
+      <th scope="col">Line 2</th>
+      <th scope="col">city</th>
+      <th scope="col">State</th>
+      <th>country</th>
+      <th>Pincode</th>
+     <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @addresses.each do |address| %>
+    <tr>
+      <th scope="row"><%= srno %><% srno+= 1 %></th>
+      <td><%= address.street1 %></td>
+      <td><%= address.street2 %></td>
+      <td><%= address.city %></td>
+      <td><%= address.state %></td>
+      <td><%= address.country %></td>
+      <td><%= address.pincode %></td>
+      <td>
+            <%= link_to "Modify", edit_address_path(address), class: "btn btn-success m-2 text-black" %>
+            <%= link_to "View", address_path(address), class: "btn btn-primary m-2 text-black" %>
+            <%= link_to "Remove", address_path(address), method: :delete, data: { turbo_method: :delete}, class: "btn btn-danger m-2 text-black" %>
+      </td>
+      
+    </tr>
+    <% end %>
+  </tbody>
+</table>
