@@ -5,17 +5,21 @@
 <thead>
     <tr>
       <th scope="col">sr.No<% srno = 1 %></th>
-      <th scope="col">Product</th>
-      <th>Quantity</th>
+      <th scope="col">Product <% total = 0 %></th>
+      <th>Price</th>
+      <th>Quantity<% qty = 0 %></th>
+      <th>Total</th>
      <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <% @carts.each do |cart| %>
     <tr>
-      <th scope="row"><%= srno %><% srno+= 1 %></th>
+      <th scope="row"><%= srno %><% srno+= 1  %></th>
       <td><%= link_to cart.product&.name, product_path(cart.product&.id) %></td>
+      <td><%= cart.product&.price %></td>
       <td><%= cart.quantity %></td>
+      <td><%=  cart.product&.price * cart.quantity %></td>
       <td>
              <%#= link_to "Modify", edit_cart_path(cart), class: "btn btn-success m-2 text-black" %>
              <%#= link_to "View", cart_path(cart), class: "btn btn-primary m-2 text-black" %>
@@ -23,6 +27,16 @@
       </td>
       
     </tr>
+    <% qty += cart.quantity %>
+    <% total += (cart.product&.price * cart.quantity ) %>
     <% end %>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><%= qty %></td>
+        <td><%= total %></td>
+        <td><%= link_to "Checkout", new_order_path, class: "btn btn-warning text-black" %></td>
+    </tr>
   </tbody>
-</table>
+</table>    

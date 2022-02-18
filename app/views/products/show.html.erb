@@ -49,6 +49,11 @@
     </td>
 
     </tr>
+    <tr>
+      <td>
+        <%= link_to "Add To Cart", carts_path(product_id: @product.id), method: :post, class: "btn btn-warning text-black"  %>   
+      </td>
+    </tr>
   </tbody>
 </table>
 </center>

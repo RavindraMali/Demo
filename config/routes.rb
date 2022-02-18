@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources:addresses
   
   resources:carts
+
+  resources:orders
   
   get '/page/:slug', to: 'pages#page'
   
