@@ -1,0 +1,28 @@
+<div class="text-right">
+    <%= link_to "Back", products_path, class: "btn btn-dark m-2" %>
+</div>
+<table class="table table-striped">
+<thead>
+    <tr>
+      <th scope="col">sr.No<% srno = 1 %></th>
+      <th scope="col">Product</th>
+      <th>Quantity</th>
+     <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @carts.each do |cart| %>
+    <tr>
+      <th scope="row"><%= srno %><% srno+= 1 %></th>
+      <td><%= link_to cart.product&.name, product_path(cart.product&.id) %></td>
+      <td><%= cart.quantity %></td>
+      <td>
+             <%#= link_to "Modify", edit_cart_path(cart), class: "btn btn-success m-2 text-black" %>
+             <%#= link_to "View", cart_path(cart), class: "btn btn-primary m-2 text-black" %>
+            <%= link_to "Remove", cart_path(cart), method: :delete, data: { turbo_method: :delete}, class: "btn btn-danger m-2 text-black" %>
+      </td>
+      
+    </tr>
+    <% end %>
+  </tbody>
+</table>

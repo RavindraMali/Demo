@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   resources:addresses
   
+  resources:carts
+  
   get '/page/:slug', to: 'pages#page'
   
 end
