@@ -1,4 +1,5 @@
 <div class="container">
+<h3>CheckOut</h3>
 <table class="table table-striped">
 <thead>
     <tr>
@@ -38,8 +39,6 @@
 <div class="container col-md-4">
 
 <%= form_with model: @order do |form| %>
-  <h5>Total Payable amount for your order</h5>
-  <%= form.text_field :total_amount, value: @total, :class => "form-control", :disabled => "true" %>
   <h5>Choose delivery address</h5>
   <% @addresses.each do |address| %>
     <div class="form-check">

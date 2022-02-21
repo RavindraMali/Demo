@@ -1,0 +1,51 @@
+<center>
+<h3>Edit</h3>
+<%= form_with model: @cart do |form| %>
+    
+<table class="table table-striped">
+
+<thead>
+  </thead>
+  <tbody>
+    <tr>
+            <th scope="col">Name</th>
+            <td><%= @cart.product&.name %></td>
+
+            <th scope="col">Title</th>
+            <td><%= @cart.product&.title %></td>
+    </tr>
+    <tr>
+        <th>Code</th>
+        <td><%= @cart.product&.code %></td>
+        
+        <th>Manufactured By</th>
+        <td><%= @cart.product&.manufacture_by %></td>
+    </tr>
+    <tr>
+        <th scope="col">Price(Rate)</th>      
+        <td><%= @cart.product&.price %></td>
+        <th>Quantity</th>
+        <td><%#= form.number_field :quantity, :placeholder => "Qaunitity", :min => 1, :class => "form-control" %>
+        <input type="number" name="quantity" value="<%= @cart.quantity %>" min="1" class="form-control" />
+        </td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td><%= @cart.product&.status %></td>
+        <td><%= form.submit %></td>
+     
+    </tr>
+    <tr>
+    <th>Image</th>
+    <td>
+      <% if @cart.product.image_url %>
+    <%= image_tag  @cart.product&.image_url , class: "img-responsive"%>
+      <% end %>
+    </td>
+      
+    
+    </tr>
+  </tbody>
+</table>
+<% end %>
+</center>

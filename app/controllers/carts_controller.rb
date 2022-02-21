@@ -7,16 +7,32 @@ class CartsController < ApplicationController
     end
 
     def create
-        @cart = Cart.new
-        @cart.user_id = current_user.id
-        p params[:product_id]
-        @cart.product_id = params[:product_id]
-        @cart.quantity = 1
-        if @cart.save
+         @cart = Cart.find_by(product_id: params[:product_id])
+        if @cart
+            quantity = @cart.quantity + 1 
+            @cart.update(quantity: quantity)
             redirect_to carts_path
         else
-            redirect_to products_path
+            @cart = Cart.new
+            @cart.user_id = current_user.id
+            @cart.product_id = params[:product_id]
+            @cart.quantity = 1
+            if @cart.save
+                redirect_to carts_path
+            else
+                redirect_to products_path
+            end
         end
+    end
+    
+    def edit
+        @cart = Cart.find(params[:id])
+    end
+
+    def update
+        @cart = Cart.find(params[:id])
+        @cart.update(quantity: params[:quantity])
+        redirect_to carts_path
     end
 
     def destroy
