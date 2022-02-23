@@ -1,0 +1,19 @@
+<h1>Dear, <%= @user.username %> your order generated successfully</h1>
+<table border="1px dotted" class="table table-striped">
+<thead>  
+  <tr>
+    <th scope="col">Order ID</th>
+    <th scope="col">Delivery Address</th>
+    <th scope="col">Order Amount</th>
+    <th scope="col">Order Date </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @order.id %></td>
+    <td><%= @order.address %></td>
+    <td><%= @order.total_amount %></td>
+    <td><%= @order.order_date.to_date %></td>
+  </tr>
+  </tbody>
+</table>

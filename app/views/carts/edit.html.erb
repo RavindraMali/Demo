@@ -25,8 +25,8 @@
         <th scope="col">Price(Rate)</th>      
         <td><%= @cart.product&.price %></td>
         <th>Quantity</th>
-        <td><%#= form.number_field :quantity, :placeholder => "Qaunitity", :min => 1, :class => "form-control" %>
-        <input type="number" name="quantity" value="<%= @cart.quantity %>" min="1" class="form-control" />
+        <td><%= form.number_field :quantity, :placeholder => "Qaunitity", :min => 1, :class => "form-control" %>
+        <!--input type="number" name="quantity" value="<%= @cart.quantity %>" min="1" class="form-control" /-->
         </td>
     </tr>
     <tr>

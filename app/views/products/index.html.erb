@@ -1,3 +1,4 @@
+<h5>Total Product's available : <%= @products.count %></h5>
 <table class="table table-striped">
 <thead>
     <tr>
@@ -35,7 +36,11 @@
       </td>
       <td>
         <%= link_to "View", product, :class => "btn btn-primary text-black" %>
+        <% if product.quantity > 0 %>
         <%= link_to "Add To Cart", carts_path(product_id: product.id), method: :post, :class => "btn btn-success text-black"  %>      
+        <% else %>
+          <strong style="color:red;">out of Stock</strong>
+        <% end %>
         </td>
     </tr>
     <% end %>

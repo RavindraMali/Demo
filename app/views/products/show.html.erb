@@ -51,7 +51,11 @@
     </tr>
     <tr>
       <td>
+      <% if @product.quantity > 0 %>
         <%= link_to "Add To Cart", carts_path(product_id: @product.id), method: :post, class: "btn btn-warning text-black"  %>   
+      <% else %>
+        <strong style="color:red;">Out of stock</strong>
+      <% end %>
       </td>
     </tr>
   </tbody>

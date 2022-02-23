@@ -1,0 +1,41 @@
+<div class="container">
+<table border="1px dotted"> 
+    <tr>
+        <th>Order ID</th>
+        <th scope="col">Delivery Address</th>
+        <th scope="col">Order Amount</th>
+        <th scope="col">Order Date </th>
+    </tr>
+    <tr>
+        <td><%= @order.id %></td> 
+        <td><%= @order.address %></td>   
+        <th scope="col"><%= @order.total_amount %> </th>
+        <td><%= @order.order_date.to_date %></td>
+    </tr>    
+</table>
+<table  class="table table-striped">
+<thead>  
+  <tr>
+    <th scope="col">sr.No<% srno = 1 %></th>
+    <th scope="col">Product</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Quantity<% quantity=0 %></th>
+    <th>Total<% total = 0 %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @order.order_product.order("id").reverse_order.each do |product| %>
+  <tr>
+    <th scope="row"><%= srno %><% srno+= 1 %></th>
+    <td><%= link_to product.product&.name, product_path(product.product&.id) %></td>
+    <td><%= product.amount %></td>
+    <td><%= product.quantity %><% quantity += product.quantity %></td>
+    <td><%= product.quantity * product.amount %><% total += product.quantity * product.amount  %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td></td><td></td><td>Total</td><th><%= quantity %></th><th><%= total %></th>
+  </tr>
+  </tbody>
+</table>
+</div>

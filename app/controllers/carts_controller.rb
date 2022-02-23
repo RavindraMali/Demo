@@ -1,26 +1,28 @@
 class CartsController < ApplicationController
 
-
     def index
-        user_id = current_user.id
-        @carts = Cart.where(user_id: user_id)
+        @carts = Cart.where(user_id: current_user.id)
     end
 
     def create
          @cart = Cart.find_by(product_id: params[:product_id])
         if @cart
-            quantity = @cart.quantity + 1 
-            @cart.update(quantity: quantity)
-            redirect_to carts_path
+            if  @cart.product&.quantity < @cart.quantity + 1
+                redirect_to products_path, alert: "only #{@cart.product&.quantity} #{@cart.product&.name} are available!!"
+            else
+                quantity = @cart.quantity + 1 
+                @cart.update(quantity: quantity)
+                redirect_to carts_path, notice: "#{@cart.product&.name} added to cart"
+            end
         else
             @cart = Cart.new
             @cart.user_id = current_user.id
             @cart.product_id = params[:product_id]
             @cart.quantity = 1
             if @cart.save
-                redirect_to carts_path
+                redirect_to carts_path, notice: "#{@cart.product&.name} added to cart"
             else
-                redirect_to products_path
+                redirect_to products_path, notice: "could not added to cart"
             end
         end
     end
@@ -31,16 +33,21 @@ class CartsController < ApplicationController
 
     def update
         @cart = Cart.find(params[:id])
-        @cart.update(quantity: params[:quantity])
-        redirect_to carts_path
+
+        if  @cart.product&.quantity < params[:cart][:quantity].to_i
+            redirect_to carts_path, alert: "only #{@cart.product&.quantity} #{@cart.product&.name} are available!!"
+        else
+            @cart.update(quantity: params[:cart][:quantity])
+            redirect_to carts_path, notice: "cart details updated"
+        end
     end
 
     def destroy
         @cart = Cart.find(params[:id])
         if @cart.destroy
-            redirect_to carts_path
+            redirect_to carts_path, notice: "#{@cart.product&.name} removed from cart"
         else
-            render :index, status: :unprocessable_entity
+            redirect_to carts_path, alert: "Could not found product"
         end
     end
     # def cart_params

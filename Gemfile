@@ -32,6 +32,7 @@ gem 'devise'
 # CK editor 
 gem 'ckeditor'
 
+gem 'bootstrap', '~> 5.1.3'
 
 gem 'carrierwave', '~> 2.0'
 
