@@ -1,5 +1,9 @@
-<center>
+<div class="container">
+<div class="text-right">
+<%= link_to 'Back', products_path, class: "btn btn-dark m-2" %>
+</div>
 <h3>Product Detail </h3>
+
 <table class="table table-striped">
 
 <thead>
@@ -10,10 +14,7 @@
             <td><%= @product.name %></td>
 
             <th scope="col">Title</th>
-            <td><%= @product.title %></td>
-
-            <th>Category</th>
-            <td><%= @product.category&.name %></td>
+            <td><%= @product.title %></td>       
     </tr>
     <tr>
         <th scope="col">Description</th>
@@ -40,6 +41,7 @@
         <th>Created At</th>
         <td><%= @product.created_at.to_date %></td>
     </tr>
+    
     <tr>
     <th>Image</th>
     <td>
@@ -47,17 +49,15 @@
     <%= image_tag  @product.image_url , class: "img-responsive"%>
       <% end %>
     </td>
-
-    </tr>
-    <tr>
-      <td>
-      <% if @product.quantity > 0 %>
-        <%= link_to "Add To Cart", carts_path(product_id: @product.id), method: :post, class: "btn btn-warning text-black"  %>   
-      <% else %>
-        <strong style="color:red;">Out of stock</strong>
-      <% end %>
-      </td>
+    <th>Category</th>
+    <td><%= @product.category&.name %></td>
+   
     </tr>
   </tbody>
 </table>
-</center>
+<% if @product.quantity > 0 %>
+<%= link_to "Add To Cart", carts_path(product_id: @product.id), method: :post, class: "btn btn-warning text-black"  %>   
+<% else %>
+<strong style="color:red;">Out of stock</strong>
+<% end %>
+</div>

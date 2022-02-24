@@ -1,48 +1,43 @@
-<h5>Total Product's available : <%= @products.count %></h5>
-<table class="table table-striped">
-<thead>
-    <tr>
-      <th scope="col">sr.No<% srno = 1 %></th>
-      <th scope="col">Name</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Category</th>
-      <th>Code</th>
-      <th>Manufactured By</th>
-      <th>Status</th>
-      <th scope="col">Price(Rate)</th>
-      <th>Quentity</th>
-      <th>Image</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <div class="row" style="margin:5px;">  
+    <div class="col-6">
+      <h5>Total Products available : <%= @products.count %></h5>
+    </div>
+    
+        <%= form_with url: products_search_path, class: "d-flex col-md-4 right", local: true do |form| %>
+          <%= form.text_field :search, class: "form-control me-2", placeholder: "search product" %>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <% end %>
+    
+</div>
+	<div class="row">
   <% @products.each do |product| %>
-    <tr>
-      <th scope="row"><%= srno %><% srno+= 1 %></th>
-      <td><%= product.name %></td>
-      <td><%= product.title %></td>
-      <td><%= raw(product.description) %></td>
-      <td><%= product.category&.name %></td>
-      <td><%= product.code %></td>
-      <td><%= product.manufacture_by %></td>
-      <td><%= product.status %></td>
-      <td><%= product.price %></td>
-      <td><%= product.quantity %></td>
-      <td>
-          <% if product.image_url %>
-          <%= image_tag product.image_url(:thumb) , class: "img-responsive"%>
-          <% end %> 
-      </td>
-      <td>
-        <%= link_to "View", product, :class => "btn btn-primary text-black" %>
+		<div class="card" style="width: 15rem;margin:1px;">
+    <% if product.image_url %>
+    <%= image_tag product.image_url , class: "img-responsive"%>
+    <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to product.name, product %></h5>
+    <p class="card-text"><%= product.title  %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Category : <%= product.category&.name %></li>
+    <li class="list-group-item">Rs. <%= product.price %></li>
+    <li class="list-group-item"><%= product.quantity %> <%= product.status %></li>
+  </ul>
+  <div class="card-body">
+  <%= link_to "View", product, :class => "btn btn-primary  card-link text-black" %>
         <% if product.quantity > 0 %>
-        <%= link_to "Add To Cart", carts_path(product_id: product.id), method: :post, :class => "btn btn-success text-black"  %>      
+        <%= link_to "Add To Cart", carts_path(product_id: product.id), method: :post, :class => "btn btn-outline-success text-black"  %>      
         <% else %>
           <strong style="color:red;">out of Stock</strong>
         <% end %>
-        </td>
-    </tr>
+   
+  </div>
+</div>
     <% end %>
-  </tbody>
-</table>
+	</div>	
+</div>
+
+
+

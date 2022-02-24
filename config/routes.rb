@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # get '/contactus', to: "contacts#index" 
   # get '/aboutus', to: "abouts#index"
   resources:products
-  
+  post '/products/search', to: 'products#search', as: 'products_search'
+
   resources:addresses
   
   resources:carts
