@@ -8,8 +8,12 @@ class ProductsController < ApplicationController
 
     def search
         # @products = Product.where("name LIKE  ? OR title LIKE ?","%#{params[:search]}%","%#{params[:search]}%")
-        @products = Product.search(params[:search])
-        render "index"
+        @products = Product.search(params[:search].strip)
+        if @products.presence
+            render "index"
+        else
+            redirect_to products_path, notice: "no such product available"
+        end
     end
 
     def show

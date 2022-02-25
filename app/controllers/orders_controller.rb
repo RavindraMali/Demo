@@ -59,6 +59,12 @@ class OrdersController < ApplicationController
 
    
     def destroy
+        @order = Order.find(params[:id])
+        if @order.destroy
+            redirect_to orders_path
+        else
+            redirect_to orders_path, alert: "something wents wrong"
+        end
     end
 
 end
